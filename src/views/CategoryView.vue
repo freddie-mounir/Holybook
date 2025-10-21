@@ -6,9 +6,13 @@
     </div>
     
     <div class="category-3d-container">
-      <ScrollScene 
-        :books="books" 
-        :section-index="0"
+      <BookModel 
+        v-for="book in books"
+        :key="book.id"
+        :model-path="book.modelPath"
+        :cover-texture="book.coverTexture"
+        :scroll-speed="book.scrollSpeed"
+        :position="{ x: (index - books.length / 2) * 2, y: 0, z: 0 }"
       />
     </div>
     
@@ -26,7 +30,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import ScrollScene from '../components/3d/ScrollScene.vue'
+import BookModel from '../components/3d/bookmodel.vue'
 import BookCard from '../components/ui/BookCard.vue'
 import { useCart } from '@/composables/useCart'
 
